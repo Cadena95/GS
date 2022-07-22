@@ -1,0 +1,18 @@
+<a routerLink="/">volver</a>
+<h1>CALCULO DE MONEDAS</h1>
+
+<form [formGroup]="formG" (ngSubmit)="validateInput()">
+
+    <div class="form-group">
+        <label for="valor">Cantidad a calcular en monedas</label>
+        <input formControlName="valor" id="valor" type="number" class="form-control">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Mostrar calculo de monedas</button>
+</form>
+
+<div *ngIf="sucesion.length > 0">
+    <p *ngFor="let billete of sucesion">
+        {{billete}}
+    </p>
+</div>

@@ -1,0 +1,58 @@
+<a routerLink="/">volver</a>
+<h1>PERSONAS</h1>
+
+<form [formGroup]="formG" (ngSubmit)="validateInput()">
+
+    <div class="form-group">
+        <label for="nombre">Nombre persona: </label>
+        <input formControlName="nombre" id="nombre" type="text" class="form-control">
+    </div>
+    <p *ngIf="!formG.valid">Llene el campo para poder agregar un registro de persona</p>
+    <p *ngIf="formG.valid"><br></p>
+
+    <button class="btn btn-primary" type="submit">Agregar persona</button>
+
+</form>
+
+<br>
+<br>
+
+<ng-container *ngIf="personasTabla">
+    <div *ngIf="personasTabla.length > 0">
+        <h3>Ultimas 10 personas agregadas</h3>
+
+        <table id="indicadores">
+            <tr>
+                <th>Personas con salario mayor a $4000</th>
+                <th>Personas con salario menor a $4000</th>
+                <th>Personas con entre 20 y 35 horas/semana</th>
+                <th>Personas con entre 36 y 48 horas/semana</th>
+            </tr>
+            <tr>
+                <td>{{calcularPorcentaje(salarioMayor, personasTabla.length)}}% ({{salarioMayor}} {{salarioMayor > 1 ?
+                    'Personas' : 'Persona'}} )</td>
+                <td>{{calcularPorcentaje(salarioMenor, personasTabla.length)}}% ({{salarioMenor}} {{salarioMenor > 1 ?
+                    'Personas' : 'Persona'}} )</td>
+                <td>{{calcularPorcentaje(horarioMenor, personasTabla.length)}}% ({{horarioMenor}} {{horarioMenor > 1 ?
+                    'Personas' : 'Persona'}} )</td>
+                <td>{{calcularPorcentaje(horarioMayor, personasTabla.length)}}% ({{horarioMayor}} {{horarioMayor > 1 ?
+                    'Personas' : 'Persona'}} )</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Sexo</th>
+                <th>Salario</th>
+                <th>Horas / semana</th>
+            </tr>
+            <tr *ngFor="let p of personasTabla">
+                <td>{{p.nombre}}</td>
+                <td>{{p.sexo }}</td>
+                <td>${{p.salario }}</td>
+                <td>{{p.horasSemana }}</td>
+            </tr>
+        </table>
+    </div>
+</ng-container>

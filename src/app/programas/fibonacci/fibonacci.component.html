@@ -1,0 +1,16 @@
+<a routerLink="/">volver</a>
+<h1>SUCESIÓN FIBONACCI</h1>
+
+<form [formGroup]="formG" (ngSubmit)="validateInput()">
+
+    <div class="form-group">
+        <label for="elementos">Numero de elementos a mostrar</label>
+        <input formControlName="elementos" id="elementos" type="number" class="form-control">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Mostrar sucesión</button>
+</form>
+
+<div *ngIf="sucesion.length > 0">
+    {{sucesion}}
+</div>
